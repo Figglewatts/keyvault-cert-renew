@@ -1,0 +1,45 @@
+service: keyvault-cert-renew
+
+frameworkVersion: '2'
+
+provider:
+  name: azure
+  region: West Europe
+  runtime: python3.8
+  # subscriptionId: A356AC8C-E310-44F4-BF85-C7F29044AF99
+
+  environment: # these will be created as application settings
+    VARIABLE_FOO: 'foo'
+
+plugins:
+  - serverless-azure-functions
+package:
+  patterns:
+    - '!env/**'
+    - '!.env/**'
+    - '!local.settings.json'
+    - '!.vscode/**'
+    - '!__pycache__/**'
+    - '!node_modules/**'
+    - '!.python_packages/**'
+    - '!.funcignore'
+    - '!package.json'
+    - '!package-lock.json'
+    - '!.gitignore'
+    - '!.git/**'
+
+functions:
+  hello:
+    handler: handler.main
+    events:
+      - http: true
+        methods:
+          - GET
+        authLevel: anonymous
+
+  # timer:
+  #   handler: src/handlers/timer
+  #   events:
+  #     - timer:
+  #       x-azure-settings:
+  #         schedule: '*/10 * * * * *'
