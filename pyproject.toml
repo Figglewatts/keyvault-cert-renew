@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "keyvault-cert-renew"
+version = "0.1.0"
+description = ""
+authors = ["Figglewatts"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+marshmallow = "^3.11.1"
+pem = "^21.2.0"
+PyYAML = "^5.4.1"
+certbot = "^1.14.0"
+certbot-dns-azure = "^1.1.0"
+azure-identity = "^1.5.0"
+azure-keyvault-certificates = "^4.2.1"
+pytimeparse = "^1.1.8"
+aiohttp = "^3.7.4"
+
+[tool.poetry.dev-dependencies]
+pylint = "^2.8.2"
+yapf = "^0.31.0"
+pytest = "^6.2.3"
+pytest-cov = "^2.11.1"
+aiorun = "^2020.12.1"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"

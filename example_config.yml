@@ -1,0 +1,34 @@
+key_vaults:
+  - vault_url: https://kvlsdrevampednet.vault.azure.net/
+    certificates:
+      - name: test-cert
+        domains:
+          - "*.lsdrevamped.net"
+          - "lsdrevamped.net"
+        renew_before: 30d
+        staging: true
+
+logging:
+  version: 1
+  formatters:
+    default:
+      format: "%(asctime)s.%(msecs)03dZ <%(name)s> [%(levelname)s]: %(message)s"
+      datefmt: "%Y-%m-%d %H:%M:%S"
+  handlers:
+    console:
+      class: logging.StreamHandler
+      level: INFO
+      formatter: default
+      stream: ext://sys.stdout
+  root:
+    level: INFO
+    handlers: [console]
+  loggers:
+    __main__:
+      level: INFO
+
+    # otherwise the python azure API will spew out HTTP logging at us
+    azure:
+      level: CRITICAL
+    msal_extensions.libsecret:
+      level: CRITICAL
